@@ -42,7 +42,9 @@ public class Character_Movement : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 movement *= runningSpeed;
+                Mathf.Clamp(movement.z, 0f, MaxRunningSpeed);
             }
+            movement = Transform.TransformDirection(movement);
         }
         if (Input.GetKey(KeyCode.S)) 
         {
@@ -51,13 +53,13 @@ public class Character_Movement : MonoBehaviour
             {
                 movement *= runningSpeed;
             }
+            movement = Transform.TransformDirection(movement);
+
         }
-        //spleen spin
-        //Debug.Log(movement);
 
-        
 
-        controller.Move(movement);
+        movement.y -= gravity * Time.deltaTime;
+        controller.Move(movement * Time.deltaTime);
     }
     void FixedUpdate()
     {
