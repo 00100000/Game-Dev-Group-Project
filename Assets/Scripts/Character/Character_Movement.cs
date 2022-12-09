@@ -11,15 +11,17 @@ public class Character_Movement : MonoBehaviour
     public float MaxRunningSpeed = 12f;
     public float runningSpeed = 2f;
     public float gravity = 10f;
-    public float sensitivityCamera = 100f;
+    public float sensitivity = 1f;
     public bool isInAir;
     public bool jump = true;
-    private float rot = 0f;
+    private Vector3 rot = new Vector3(255,255,255);
     Vector3 movement = new Vector3(0, 0, 0);
+    
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+
+        Cursor.lockState = CursorLockMode.Confined;
         controller = GetComponent<CharacterController>();
        // runningSound = GetComponent<AudioSource>().clip;
         controllerBody = GetComponent<Transform>();
@@ -28,16 +30,12 @@ public class Character_Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         //Camera movement
-        float xRot = Input.GetAxis("Mouse X") * sensitivityCamera * Time.deltaTime;
-        float yRot = Input.GetAxis("Mouse Y") * sensitivityCamera * Time.deltaTime;
-        rot -= yRot;
-        rot = Mathf.Clamp(rot, -90f, 90f);
-
-        transform.localRotation = Quaternion.Euler(rot, 0f, 0f);
-        controllerBody.Rotate(Vector3.up * xRot);
-        //controllerBody.Rotate(Vector3.left * xRot);
-
+        rot = Input.mousePosition;
+        rot = new Vector3(Input.mousePosition.y % 360, Input.mousePosition.x % 360, 0);
+        transform.eulerAngles = rot;
+        //Broken movement lol fix it soon. 
         if (Input.GetKey(KeyCode.W))
         {
             movement = new Vector3(0, 0, 1);
@@ -48,7 +46,7 @@ public class Character_Movement : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.S)) 
         {
-            movement = new Vector3(0, 0, 1);
+            movement = new Vector3(0, 0, -1);
             if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 movement *= runningSpeed;
@@ -56,7 +54,7 @@ public class Character_Movement : MonoBehaviour
         }
         //spleen spin
         //Debug.Log(movement);
-        Debug.Log(xRot + ", " + yRot);
+
         
 
         controller.Move(movement);
