@@ -18,7 +18,7 @@ public class EnemyAI : MonoBehaviour {
 	// attack
 	public float timeBetweenAttacks;
 	bool alreadyAttacked;
-
+	
 	private void Awake() {
 		player = GameObject.Find("Player").transform;
 		agent = GetComponent<NavMeshAgent>();
@@ -26,8 +26,8 @@ public class EnemyAI : MonoBehaviour {
 
 	private void Update() {
 		playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-		playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
-		
+		playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer); 
+		//Action States
 		if (!playerInSightRange && !playerInAttackRange) Patrolling();
 		if (playerInSightRange && !playerInAttackRange) ChasePlayer();
 		if (playerInSightRange && playerInAttackRange) AttackPlayer();
