@@ -3,8 +3,8 @@
 --- !u!129 &1
 PlayerSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 24
-  productGUID: 8c90224daede6e1489abe61016b587e4
+  serializedVersion: 23
+  productGUID: 0fbb1cb458c72a1e29f33c4886661190
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: David
+  productName: Ankit - World War 2
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -47,8 +47,7 @@ PlayerSettings:
   defaultScreenWidthWeb: 960
   defaultScreenHeightWeb: 600
   m_StereoRenderingPath: 0
-  m_ActiveColorSpace: 1
-  m_SpriteBatchVertexThreshold: 300
+  m_ActiveColorSpace: 0
   m_MTRendering: 1
   mipStripping: 0
   numberOfMipsStripped: 0
@@ -56,6 +55,7 @@ PlayerSettings:
   iosShowActivityIndicatorOnLoading: -1
   androidShowActivityIndicatorOnLoading: -1
   iosUseCustomAppBackgroundBehavior: 0
+  iosAllowHTTPDownload: 1
   allowedAutorotateToPortrait: 1
   allowedAutorotateToPortraitUpsideDown: 1
   allowedAutorotateToLandscapeRight: 1
@@ -119,11 +119,8 @@ PlayerSettings:
   switchNVNShaderPoolsGranularity: 33554432
   switchNVNDefaultPoolsGranularity: 16777216
   switchNVNOtherPoolsGranularity: 16777216
-  switchGpuScratchPoolGranularity: 2097152
-  switchAllowGpuScratchShrinking: 0
   switchNVNMaxPublicTextureIDCount: 0
   switchNVNMaxPublicSamplerIDCount: 0
-  switchNVNGraphicsFirmwareMemory: 32
   stadiaPresentMode: 0
   stadiaTargetFramerate: 0
   vulkanNumSwapchainBuffers: 3
@@ -148,6 +145,7 @@ PlayerSettings:
     enable360StereoCapture: 0
   isWsaHolographicRemotingEnabled: 0
   enableFrameTimingStats: 0
+  enableOpenGLProfilerGPURecorders: 1
   useHDRDisplay: 0
   D3DHDRBitDepth: 0
   m_ColorGamuts: 00000000
@@ -156,7 +154,8 @@ PlayerSettings:
   resetResolutionOnWindowResize: 0
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
-  applicationIdentifier: {}
+  applicationIdentifier:
+    Standalone: com.DefaultCompany.Ankit---World-War-2
   buildNumber:
     Standalone: 0
     iPhone: 0
@@ -176,13 +175,12 @@ PlayerSettings:
   APKExpansionFiles: 0
   keepLoadedShadersAlive: 0
   StripUnusedMeshComponents: 1
-  strictShaderVariantMatching: 0
   VertexChannelCompressionMask: 4054
   iPhoneSdkVersion: 988
-  iOSTargetOSVersionString: 12.0
+  iOSTargetOSVersionString: 11.0
   tvOSSdkVersion: 0
   tvOSRequireExtendedGameController: 0
-  tvOSTargetOSVersionString: 12.0
+  tvOSTargetOSVersionString: 11.0
   uIPrerenderedIcon: 0
   uIRequiresPersistentWiFi: 0
   uIRequiresFullScreen: 1
@@ -289,6 +287,7 @@ PlayerSettings:
   - m_BuildTarget: WebGL
     m_StaticBatching: 0
     m_DynamicBatching: 0
+  m_BuildTargetShaderSettings: []
   m_BuildTargetGraphicsJobs:
   - m_BuildTarget: MacStandaloneSupport
     m_GraphicsJobs: 0
@@ -340,6 +339,8 @@ PlayerSettings:
     m_Devices:
     - Oculus
     - OpenVR
+  m_DefaultShaderChunkSizeInMB: 16
+  m_DefaultShaderChunkCount: 0
   openGLRequireES31: 0
   openGLRequireES31AEP: 0
   openGLRequireES32: 0
@@ -355,12 +356,9 @@ PlayerSettings:
     m_EncodingQuality: 1
   - m_BuildTarget: tvOS
     m_EncodingQuality: 1
-  m_BuildTargetGroupHDRCubemapEncodingQuality:
-  - m_BuildTarget: Android
+  - m_BuildTarget: WebGL
     m_EncodingQuality: 1
-  - m_BuildTarget: iPhone
-    m_EncodingQuality: 1
-  - m_BuildTarget: tvOS
+  - m_BuildTarget: Standalone
     m_EncodingQuality: 1
   m_BuildTargetGroupLightmapSettings: []
   m_BuildTargetNormalMapEncoding:
@@ -383,7 +381,6 @@ PlayerSettings:
   locationUsageDescription: 
   microphoneUsageDescription: 
   bluetoothUsageDescription: 
-  macOSTargetOSVersion: 10.13.0
   switchNMETAOverride: 
   switchNetLibKey: 
   switchSocketMemoryPoolSize: 6144
@@ -395,7 +392,6 @@ PlayerSettings:
   switchLTOSetting: 0
   switchApplicationID: 0x01004b9000490000
   switchNSODependencies: 
-  switchCompilerFlags: 
   switchTitleNames_0: 
   switchTitleNames_1: 
   switchTitleNames_2: 
@@ -522,7 +518,7 @@ PlayerSettings:
   switchSocketInitializeEnabled: 1
   switchNetworkInterfaceManagerInitializeEnabled: 1
   switchPlayerConnectionEnabled: 1
-  switchUseNewStyleFilepaths: 1
+  switchUseNewStyleFilepaths: 0
   switchUseMicroSleepForYield: 1
   switchEnableRamDiskSupport: 0
   switchMicroSleepForYieldTime: 25
@@ -622,25 +618,30 @@ PlayerSettings:
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
-  webGLInitialMemorySize: 32
-  webGLMaximumMemorySize: 2048
-  webGLMemoryGrowthMode: 2
-  webGLMemoryLinearGrowthStep: 16
-  webGLMemoryGeometricGrowthStep: 0.2
-  webGLMemoryGeometricGrowthCap: 96
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    Android: UNITY_POST_PROCESSING_STACK_V2
+    EmbeddedLinux: UNITY_POST_PROCESSING_STACK_V2
+    GameCoreXboxOne: UNITY_POST_PROCESSING_STACK_V2
+    Lumin: UNITY_POST_PROCESSING_STACK_V2
+    Nintendo Switch: UNITY_POST_PROCESSING_STACK_V2
+    PS4: UNITY_POST_PROCESSING_STACK_V2
+    PS5: UNITY_POST_PROCESSING_STACK_V2
+    Stadia: UNITY_POST_PROCESSING_STACK_V2
+    Standalone: UNITY_POST_PROCESSING_STACK_V2
+    WebGL: UNITY_POST_PROCESSING_STACK_V2
+    Windows Store Apps: UNITY_POST_PROCESSING_STACK_V2
+    XboxOne: UNITY_POST_PROCESSING_STACK_V2
+    tvOS: UNITY_POST_PROCESSING_STACK_V2
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
   il2cppCompilerConfiguration: {}
-  il2cppCodeGeneration: {}
   managedStrippingLevel: {}
   incrementalIl2cppBuild: {}
   suppressCommonWarnings: 1
   allowUnsafeCode: 0
   useDeterministicCompilation: 1
   enableRoslynAnalyzers: 1
-  selectedPlatform: 0
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 1
   gcIncremental: 1
@@ -729,4 +730,3 @@ PlayerSettings:
   playerDataPath: 
   forceSRGBBlit: 1
   virtualTexturingSupportEnabled: 0
-  insecureHttpOption: 0
