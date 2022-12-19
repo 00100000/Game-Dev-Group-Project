@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 5719934581409500607}
   - component: {fileID: 5719934581409500601}
   m_Layer: 0
-  m_Name: Alpaca
+  m_Name: Alpaca Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
