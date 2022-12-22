@@ -21,7 +21,17 @@ public class PlayerMovement : MonoBehaviour {
 
     }
 	void Update() {
-		if (isGrounded() && velocity.y < 0) velocity.y = -2f;
+		//if (isGrounded() && velocity.y < 0) velocity.y = -2f;
+		if (isGrounded())
+		{
+			gravity = -20f;
+			velocity.y = -2f;	
+		}
+        else
+        {
+			gravity += gravity * 0.001f;
+			velocity.y += gravity * Time.deltaTime;
+		}
 
 		float x = Input.GetAxis("Horizontal");
 		float z = Input.GetAxis("Vertical");
@@ -33,12 +43,13 @@ public class PlayerMovement : MonoBehaviour {
 			velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
 		}
 		// falling
-		velocity.y += gravity * Time.deltaTime;
+		
 		controller.Move(velocity * Time.deltaTime);
 	}
 	public bool isGrounded()
     {
 		//change this
-		return Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+		//return Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+		return false;
 	}
 }
