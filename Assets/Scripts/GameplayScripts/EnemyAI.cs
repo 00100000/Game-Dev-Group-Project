@@ -18,13 +18,14 @@ public class EnemyAI : MonoBehaviour {
 	// attack
 	public float timeBetweenAttacks;
 	bool alreadyAttacked;
-	
+	private GameObject thePlayer;
 	private void Awake() {
 		player = GameObject.Find("Player").transform;
-		agent = GetComponent<NavMeshAgent>();
-	}
+        agent = GetComponent<NavMeshAgent>();
+		thePlayer = GameObject.Find("Player");
+    }
 
-	private void Update() {
+    private void Update() {
 		playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
 		playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer); 
 		//Action States
@@ -78,10 +79,16 @@ public class EnemyAI : MonoBehaviour {
 	// damage/death
 	public void TakeDamage(int damage) {
 		health -= damage;
-		if (health <= 0) Invoke(nameof(DestroyEnemy), 2f);
-	}
+		thePlayer.GetComponent<ScoreKeeper>().addScore(10);
+		if (health <= 0)
+			{
+				thePlayer.GetComponent<ScoreKeeper>().addScore(100);
+				Invoke(nameof(DestroyEnemy), 2f);
+			}
 
-	private void DestroyEnemy() {
+        }
+
+        private void DestroyEnemy() {
 		Destroy(gameObject);
 	}
 	// misc

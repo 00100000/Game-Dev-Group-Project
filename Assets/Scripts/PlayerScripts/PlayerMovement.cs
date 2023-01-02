@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	public float groundDistance = 1;
 	public Transform groundCheck;
-	public LayerMask groundMask;
+	public LayerMask ignoreMask;
 
 	Vector3 velocity;
 	//bool isGrounded;
@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour {
 		if (isGrounded())
 		{
 			gravity = -20f;
-			velocity.y = -2f;	
+			velocity.y = 0f;	
 		}
         else
         {
@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour {
 		controller.Move(vec * speed * Time.deltaTime);
 		// jump
 		if (Input.GetButtonDown("Jump") && isGrounded()) {
-			velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+			velocity.y = jumpHeight;
 		}
 		// falling
 		
@@ -48,8 +48,10 @@ public class PlayerMovement : MonoBehaviour {
 	}
 	public bool isGrounded()
     {
-		//change this
+		RaycastHit hit;
+
 		//return Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-		return false;
+		//Note : ignores a mask instead of only looking for it. 
+		return Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down),out hit, groundDistance, ~ignoreMask);
 	}
 }
