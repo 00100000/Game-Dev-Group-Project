@@ -59,7 +59,8 @@ public class Gun : MonoBehaviour {
 		Vector3 direction = fpsCam.transform.forward + new Vector3(x, y, 0);
 		// RayCast
 		if (Physics.Raycast(fpsCam.transform.position, direction, out rayHit, range, whatIsEnemy)) {
-			if (rayHit.collider.CompareTag("Enemy")) rayHit.collider.GetComponent<EnemyAI>().TakeDamage(damage);
+			// replace Target with EnemyAI later
+			if (rayHit.collider.CompareTag("Enemy")) rayHit.collider.GetComponent<Target>().TakeDamage(damage);
 		}
 		playerAudio.PlayOneShot(gunshot, 1f);
 		// camera shake
